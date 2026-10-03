@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>EduGenie - AI Learning Assistant</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', path='style.css') }}"
+    >
+</head>
+
+<body>
+
+    <!-- =========================
+         Header
+    ========================== -->
+
+    <header class="header">
+
+        <div class="header-content">
+
+            <div>
+                <h1>🎓 EduGenie</h1>
+
+                <p>
+                    Your AI-powered learning assistant
+                </p>
+            </div>
+
+            <div class="status">
+                <span class="status-dot"></span>
+                AI Ready
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         Main Container
+    ========================== -->
+
+    <main class="container">
+
+
+        <!-- Welcome Section -->
+
+        <section class="welcome-card">
+
+            <h2>
+                Learn Smarter with EduGenie 🚀
+            </h2>
+
+            <p>
+                Ask questions, understand difficult topics,
+                generate quizzes, summarize study material,
+                and create personalized learning paths.
+            </p>
+
+        </section>
+
+
+        <!-- =========================
+             Feature Navigation
+        ========================== -->
+
+        <div class="feature-tabs">
+
+            <button
+                class="tab-button active"
+                onclick="showFeature('qa')"
+            >
+                💬 Ask AI
+            </button>
+
+            <button
+                class="tab-button"
+                onclick="showFeature('explain')"
+            >
+                📖 Explain
+            </button>
+
+            <button
+                class="tab-button"
+                onclick="showFeature('quiz')"
+            >
+                📝 Quiz
+            </button>
+
+            <button
+                class="tab-button"
+                onclick="showFeature('summary')"
+            >
+                📋 Summary
+            </button>
+
+            <button
+                class="tab-button"
+                onclick="showFeature('learning')"
+            >
+                🧭 Learning Path
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             Q&A
+        ========================== -->
+
+        <section
+            id="qa"
+            class="feature-section active"
+        >
+
+            <div class="card">
+
+                <h2>💬 Ask EduGenie</h2>
+
+                <p class="description">
+                    Ask any educational question and
+                    get a simple AI-generated answer.
+                </p>
+
+                <textarea
+                    id="qaInput"
+                    placeholder="Example: What is an operating system?"
+                ></textarea>
+
+                <button
+                    class="primary-button"
+                    onclick="askQuestion()"
+                >
+                    Ask AI
+                </button>
+
+                <div
+                    id="qaResult"
+                    class="result"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             Explanation
+        ========================== -->
+
+        <section
+            id="explain"
+            class="feature-section"
+        >
+
+            <div class="card">
+
+                <h2>📖 Explain a Topic</h2>
+
+                <p class="description">
+                    Get a beginner-friendly explanation
+                    of any topic.
+                </p>
+
+                <input
+                    id="explainInput"
+                    type="text"
+                    placeholder="Example: Explain DBMS normalization"
+                >
+
+                <button
+                    class="primary-button"
+                    onclick="explainTopic()"
+                >
+                    Explain Topic
+                </button>
+
+                <div
+                    id="explainResult"
+                    class="result"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             Quiz
+        ========================== -->
+
+        <section
+            id="quiz"
+            class="feature-section"
+        >
+
+            <div class="card">
+
+                <h2>📝 Generate Quiz</h2>
+
+                <p class="description">
+                    Enter your study material and
+                    generate multiple-choice questions.
+                </p>
+
+                <textarea
+                    id="quizInput"
+                    placeholder="Paste your study material here..."
+                ></textarea>
+
+                <div class="input-row">
+
+                    <label for="quizCount">
+                        Number of questions:
+                    </label>
+
+                    <select id="quizCount">
+
+                        <option value="3">
+                            3
+                        </option>
+
+                        <option value="5">
+                            5
+                        </option>
+
+                        <option value="7">
+                            7
+                        </option>
+
+                        <option value="10">
+                            10
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <button
+                    class="primary-button"
+                    onclick="generateQuiz()"
+                >
+                    Generate Quiz
+                </button>
+
+                <div
+                    id="quizResult"
+                    class="result"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             Summary
+        ========================== -->
+
+        <section
+            id="summary"
+            class="feature-section"
+        >
+
+            <div class="card">
+
+                <h2>📋 Summarize Study Material</h2>
+
+                <p class="description">
+                    Convert long study material into
+                    quick revision notes.
+                </p>
+
+                <textarea
+                    id="summaryInput"
+                    placeholder="Paste your study material here..."
+                ></textarea>
+
+                <button
+                    class="primary-button"
+                    onclick="summarizeText()"
+                >
+                    Create Summary
+                </button>
+
+                <div
+                    id="summaryResult"
+                    class="result"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             Learning Path
+        ========================== -->
+
+        <section
+            id="learning"
+            class="feature-section"
+        >
+
+            <div class="card">
+
+                <h2>🧭 Create Learning Path</h2>
+
+                <p class="description">
+                    Tell EduGenie what you want to learn
+                    and get a structured learning roadmap.
+                </p>
+
+                <textarea
+                    id="learningInput"
+                    placeholder="Example: I want to learn Python for AI"
+                ></textarea>
+
+                <button
+                    class="primary-button"
+                    onclick="createLearningPath()"
+                >
+                    Create Learning Path
+                </button>
+
+                <div
+                    id="learningResult"
+                    class="result"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         Footer
+    ========================== -->
+
+    <footer class="footer">
+
+        <p>
+            EduGenie © 2026 | AI Learning Assistant
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+
+    <script
+        src="{{ url_for('static', path='app.js') }}"
+    ></script>
+
+</body>
+</html>
